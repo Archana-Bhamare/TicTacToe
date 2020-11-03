@@ -13,20 +13,25 @@ public class TicTacToeGame {
 		}
 	}
 
-	private char chooseLetter() {
-		System.out.println("Enter the Letter");
-		return sc.next().charAt(0);
+	private void chooseLetter() {
+		System.out.println("Enter the Letter 'X' or 'O'");
+		while (true) {
+			player = sc.next().charAt(0);
+			if (player == 'X' || player == 'x') {
+				computer = 'O';
+			} else if (player == '0' || player == 'o') {
+				computer = 'X';
+			} else {
+				System.out.println("Invalid Choice, Please enter letter 'X' or 'O'");
+				continue;
+			}
+		}
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe program");
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		ticTacToe.createBoard();
 		ticTacToe.chooseLetter();
-		if (player == 'X') {
-			computer = 'O';
-		} else {
-			computer = 'X';
-		}
 	}
 }
