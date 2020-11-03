@@ -1,9 +1,9 @@
 package com.bridgelabz.tictactoe;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToeGame {
-	// private static final char[] board;
 	public static Scanner sc = new Scanner(System.in);
 	public static char player, computer;
 
@@ -29,7 +29,7 @@ public class TicTacToeGame {
 		}
 	}//
 
-	private void showBoard(char[] board) {
+	private static void showBoard(char[] board) {
 
 		System.out.println(board[1] + " | " + board[2] + " | " + board[3]);
 		System.out.println("---------");
@@ -37,7 +37,21 @@ public class TicTacToeGame {
 		System.out.println("---------");
 		System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
 		System.out.println("---------");
+	}
 
+	private static int makeMove(char[] board, char player) {
+		Integer[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		while (true) {
+			System.out.println("Enter the number between 1 and 9");
+			int location = sc.nextInt();
+			if (Arrays.asList(values).contains(location) && checkIndexFree(board, location)) {
+				return location;
+			}
+		}
+	}
+
+	private static boolean checkIndexFree(char[] board, int location) {
+		return board[location] == ' ';
 	}
 
 	public static void main(String[] args) {
@@ -45,6 +59,7 @@ public class TicTacToeGame {
 		TicTacToeGame ticTacToe = new TicTacToeGame();
 		char[] board = ticTacToe.createBoard();
 		ticTacToe.chooseLetter();
-		ticTacToe.showBoard(board);
+		showBoard(board);
+		makeMove(board, player);
 	}
 }
